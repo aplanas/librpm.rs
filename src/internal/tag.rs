@@ -266,6 +266,8 @@ impl From<Index> for Tag {
             Index::License => Tag::LICENSE,
             Index::Summary => Tag::SUMMARY,
             Index::Description => Tag::DESCRIPTION,
+            Index::ProvideName => Tag::PROVIDENAME,
+            Index::InstFilenames => Tag::INSTFILENAMES,
         }
     }
 }

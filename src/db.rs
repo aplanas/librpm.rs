@@ -55,6 +55,12 @@ pub enum Index {
 
     /// Search by package description.
     Description,
+
+    /// Search by provides name.
+    ProvideName,
+
+    /// Search by installed filename.
+    InstFilenames,
 }
 
 impl Index {

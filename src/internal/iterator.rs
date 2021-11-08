@@ -3,6 +3,7 @@
 use super::{header::Header, tag::Tag, ts::GlobalTS};
 #[cfg(feature = "regex")]
 use regex::Regex;
+use std::ffi;
 use std::{os::raw::c_void, ptr};
 use streaming_iterator::StreamingIterator;
 
@@ -33,12 +34,13 @@ impl MatchIterator {
 
         if let Some(key) = key_opt {
             if !key.is_empty() {
+                let key_c = ffi::CString::new(key).expect("CString::new failed");
                 let ptr = unsafe {
                     librpm_sys::rpmtsInitIterator(
                         txn.as_mut_ptr(),
                         tag as librpm_sys::rpm_tag_t,
-                        key.as_ptr() as *const c_void,
-                        key.len() as u64,
+                        key_c.as_ptr() as *const c_void,
+                        0,
                     )
                 };
 
