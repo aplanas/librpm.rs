@@ -12,6 +12,7 @@ pub struct Package {
     pub(crate) license: String,
     pub(crate) summary: String,
     pub(crate) description: String,
+    pub(crate) buildtime: i32,
 }
 
 impl Package {
@@ -71,6 +72,11 @@ impl Package {
     /// Longer description of the package
     pub fn description(&self) -> &str {
         &self.description
+    }
+
+    /// Buildtime of the package
+    pub fn buildtime(&self) -> i32 {
+        self.buildtime
     }
 }
 
